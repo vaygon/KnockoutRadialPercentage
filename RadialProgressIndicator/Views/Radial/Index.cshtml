@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    //$('head style[type="text/css"]').attr('type', 'text/less');
+    //less.refreshStyles();
+    //window.randomize = function () {
+    //    $('.radial-progress').attr('data-progress', Math.floor(Math.random() * 100));
+    //}
+    //setTimeout(window.randomize, 200);
+    //$('.radial-progress').click(window.randomize);
+    $(function () {
+        var data = [20,47, 76 ,97];
+
+    function myModel(data) {
+        var self = this;
+        self.percentages = ko.observableArray(data);
+        self.percentage = self.percentages()[2];
+        self.itemCount = 45
+    };
+
+    ko.applyBindings(new myModel(data));
+    })
+
+</script>
+
+<h2>Radial</h2>
+
+<div class="radial-progress" data-bind="attr: {'data-progress' : percentage, 'title' : percentage + ' % has been mapped' }">
+    <div class="circle">
+        <div class="mask full">
+            <div class="fill"></div>
+        </div>
+        <div class="mask half">
+            <div class="fill"></div>
+            <div class="fill fix"></div>
+        </div>
+        <div class="shadow"></div>
+    </div>
+    <div class="inset">
+        <div class="percentage" data-bind="text: itemCount">
+            <div class="numbers"></div>
+        </div>
+    </div>
+</div>
